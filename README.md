@@ -207,4 +207,5 @@ MIT License - свободно используйте для своих прое
 
 **Сделайте звезду ⭐ этому репозиторию, если он был полезен!**
 
-[Посмотреть демо](https://yourusername.github.io) | [Сообщить об ошибке](https://github.com/yourusername/portfolio-site/issues)
+[Посмотреть демо](https://nikolay-bogatyrev.github.io/portfolio-site/) | [Сообщить об ошибке](https://github.com/yourusername/portfolio-site/issues)
+
