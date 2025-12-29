@@ -841,132 +841,160 @@ body {
 
 /* Articles Section */
 
-.articles {
-
+/* Case Studies Section */
+.case-studies {
     padding: 80px 0;
-
-    background-color: var(--bg-primary);
-
+    background-color: var(--bg-secondary);
 }
 
-
-
-.articles h2 {
-
+.section-title {
     font-size: 2.5rem;
-
     text-align: center;
-
-    margin-bottom: 3rem;
-
+    margin-bottom: 1rem;
     color: var(--text-primary);
-
 }
 
-
-
-.articles-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-    gap: 2rem;
-
-}
-
-
-
-.article-card {
-
-    background-color: var(--bg-primary);
-
-    border: 2px solid var(--border-color);
-
-    border-radius: 16px;
-
-    padding: 2rem;
-
+.section-subtitle {
     text-align: center;
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-
-}
-
-
-
-.article-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow: var(--shadow-lg);
-
-    border-color: var(--primary-color);
-
-}
-
-
-
-.article-card:nth-child(even):hover {
-
-    border-color: var(--accent-color);
-
-}
-
-
-
-.article-card:nth-child(3n):hover {
-
-    border-color: var(--accent-purple);
-
-}
-
-
-
-.article-icon {
-
-    font-size: 3rem;
-
-    margin-bottom: 1rem;
-
-}
-
-
-
-.article-card h3 {
-
-    color: var(--text-primary);
-
-    margin-bottom: 1rem;
-
-    font-weight: 700;
-
-}
-
-
-
-.article-card p {
-
     color: var(--text-secondary);
-
-    margin-bottom: 1.5rem;
-
+    font-size: 1.2rem;
+    margin-top: -2rem;
+    margin-bottom: 3rem;
 }
 
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
 
+.case-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(135, 166, 143, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
 
-.btn-link {
+.case-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(135, 166, 143, 0.2);
+    border-color: var(--primary-color);
+}
 
-    display: inline-block;
+/* Case Header */
+.case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-    color: var(--primary-color);
+.case-tag {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+}
 
-    text-decoration: none;
+.case-tag.fintech {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-blue) 100%);
+}
 
+.case-tag.product {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+}
+
+.case-tag.process {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+}
+
+.case-duration {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
     font-weight: 600;
+}
 
-    transition: color 0.3s ease;
+/* Case Title */
+.case-card h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
 
+/* Case Stats */
+.case-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+}
+
+.case-stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Case Content */
+.case-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.case-section h4 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.case-section p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .cases-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .case-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
 }
 
 
@@ -1509,7 +1537,7 @@ body {
 
 
 
-    .articles-grid,
+    .cases-grid,
 
     .repos-grid {
 
@@ -1553,7 +1581,7 @@ body {
 
     .experience h2,
 
-    .articles h2,
+    .section-title,
 
     .repositories h2,
 
