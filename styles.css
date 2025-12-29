@@ -386,7 +386,7 @@ body {
 
 .about-content {
 
-    max-width: 800px;
+    max-width: 1200px;
 
     margin: 0 auto;
 
@@ -416,6 +416,11 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
 .skill-category {
@@ -425,6 +430,10 @@ body {
     box-shadow: 0 4px 12px rgba(135, 166, 143, 0.1);
     transition: all 0.3s ease;
     border: 2px solid var(--border-color);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .skill-category:hover {
