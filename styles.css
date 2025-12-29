@@ -410,66 +410,97 @@ body {
 
 
 
-.skills {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 1rem;
-
-    justify-content: center;
-
-    margin-top: 2rem;
-
+/* Skills Categorized */
+.skills-categorized {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
 }
 
+.skill-category {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(135, 166, 143, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid var(--border-color);
+}
 
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(135, 166, 143, 0.2);
+    border-color: var(--primary-color);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.category-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.category-header h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
 .skill-tag {
-
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-blue) 100%);
-
-    color: white;
-
-    padding: 0.5rem 1.5rem;
-
+    padding: 8px 16px;
     border-radius: 50px;
-
-    font-weight: 600;
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    font-size: 0.95rem;
-
-    letter-spacing: 0.3px;
-
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    color: white;
+    border: none;
 }
-
-
 
 .skill-tag:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 4px 12px rgba(135, 166, 143, 0.3);
-
+    transform: translateY(-2px) scale(1.05);
 }
 
+/* Different colors for each category */
+.skill-tag-1 {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-blue) 100%);
+}
 
-
-.skill-tag:nth-child(even) {
-
+.skill-tag-2 {
     background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-
 }
 
-
-
-.skill-tag:nth-child(3n) {
-
+.skill-tag-3 {
     background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+}
 
+.skill-tag-4 {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-yellow) 100%);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .skills-categorized {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .skill-category {
+        padding: 20px;
+    }
 }
 
 
