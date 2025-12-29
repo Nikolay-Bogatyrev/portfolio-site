@@ -56,57 +56,54 @@ document.querySelectorAll('.timeline-item, .article-card, .repo-card').forEach(e
     observer.observe(el);
 });
 
-// Mobile menu toggle (если захотите добавить мобильное меню)
-const createMobileMenu = () => {
-    const nav = document.querySelector('.nav');
+// Mobile menu toggle
+const initMobileMenu = () => {
+    const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
-    if (!nav || !navMenu) return; // Добавить проверку
+    if (!hamburger || !navMenu) return;
     
-    // Create hamburger button
-    const hamburger = document.createElement('button');
-    hamburger.className = 'hamburger';
-    hamburger.innerHTML = '☰';
-    hamburger.style.cssText = `
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--text-primary);
-    `;
-    
-    // Insert hamburger before nav-menu
-    navMenu.parentNode.insertBefore(hamburger, navMenu);
-    
-    // Toggle menu on click
+    // Toggle menu on hamburger click
     hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     });
     
     // Close menu when clicking on a link
     navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
     
-    // Show/hide hamburger based on screen size
-    const checkScreenSize = () => {
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
-            hamburger.style.display = 'block';
-        } else {
-            hamburger.style.display = 'none';
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+    
+    // Handle window resize
+    const handleResize = () => {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
         }
     };
     
-    window.addEventListener('resize', checkScreenSize);
-    checkScreenSize();
+    window.addEventListener('resize', handleResize);
 };
 
 // Initialize mobile menu
-createMobileMenu();
+initMobileMenu();
 
 // Add scroll effect to header
 let lastScroll = 0;
