@@ -26,43 +26,42 @@
     <header class="header">
         <nav class="nav">
             <div class="container">
-                <a href="#home" class="logo">Николай Богатырев</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="ru" aria-label="Russian">RU</button>
+                    <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+                </div>
                 <button class="hamburger" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
                 <ul class="nav-menu">
-                    <li><a href="#about">О себе</a></li>
-                    <li><a href="#experience">Опыт</a></li>
-                    <li><a href="#case-studies">Case Studies</a></li>
-                    <li><a href="#repositories">Проекты</a></li>
-                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#about" data-lang-key="nav-about">О себе</a></li>
+                    <li><a href="#experience" data-lang-key="nav-experience">Опыт</a></li>
+                    <li><a href="#case-studies" data-lang-key="nav-case-studies">Case Studies</a></li>
+                    <li><a href="#repositories" data-lang-key="nav-projects">Проекты</a></li>
+                    <li><a href="#contact" data-lang-key="nav-contact">Контакты</a></li>
                 </ul>
                 <div class="header-contacts">
-                    <a href="mailto:bogatyrev.nik2023@gmail.com" class="contact-link">
+                    <a href="mailto:bogatyrev.nik2023@gmail.com" class="contact-link contact-email" aria-label="Email">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                        Email
                     </a>
-                    <a href="https://t.me/koleneb" target="_blank" rel="noopener" class="contact-link">
+                    <a href="https://t.me/koleneb" target="_blank" rel="noopener" class="contact-link contact-telegram" aria-label="Telegram">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                         </svg>
-                        Telegram
                     </a>
-                    <a href="https://www.linkedin.com/in/koleneb/" target="_blank" rel="noopener" class="contact-link">
+                    <a href="https://www.linkedin.com/in/koleneb/" target="_blank" rel="noopener" class="contact-link contact-linkedin" aria-label="LinkedIn">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
-                        LinkedIn
                     </a>
-                    <a href="https://github.com/Nikolay-Bogatyrev" target="_blank" rel="noopener" class="contact-link">
+                    <a href="https://github.com/Nikolay-Bogatyrev" target="_blank" rel="noopener" class="contact-link contact-github" aria-label="GitHub">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
-                        GitHub
                     </a>
                 </div>
             </div>
@@ -73,23 +72,23 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Привет, я <span class="highlight">Николай Богатырев</span></h1>
-                <p class="subtitle">Product Manager/Ai entrepreneur</p>
+                <h1 data-lang-key="hero-title">Привет, я <span class="highlight">Николай Богатырев</span></h1>
+                <p class="subtitle" data-lang-key="hero-subtitle">Product Manager/Ai entrepreneur</p>
                 <div class="quick-stats">
                     <div class="stat">
                         <span class="stat-icon">📊</span>
                         <span class="stat-number">6+</span>
-                        <span class="stat-label">years experience</span>
+                        <span class="stat-label" data-lang-key="stat-experience">years experience</span>
                     </div>
                     <div class="stat">
                         <span class="stat-icon">👥</span>
                         <span class="stat-number">17</span>
-                        <span class="stat-label">max team size</span>
+                        <span class="stat-label" data-lang-key="stat-team">max team size</span>
                     </div>
                     <div class="stat">
                         <span class="stat-icon">📈</span>
                         <span class="stat-number">50→90%</span>
-                        <span class="stat-label">efficiency growth</span>
+                        <span class="stat-label" data-lang-key="stat-efficiency">efficiency growth</span>
                     </div>
                 </div>
                 <div class="hero-cta">
@@ -100,13 +99,13 @@
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                         </svg>
-                        Download CV (PDF)
+                        <span data-lang-key="btn-download">Download CV (PDF)</span>
                     </a>
                     <a href="#contact" class="btn btn-contact">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
                         </svg>
-                        Contact me
+                        <span data-lang-key="btn-contact">Contact me</span>
                     </a>
                 </div>
             </div>
@@ -116,10 +115,38 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2>О себе</h2>
+            <h2 data-lang-key="about-title">О себе</h2>
             <div class="about-content">
-                <p>Product Manager с 6+ летами опыта в управлении цифровыми продуктами в сферах Gambling, Fintech, SaaS и Gaming. Специализируюсь на построении продуктовой стратегии, управлении кросс-функциональными командами до 17 человек и аналитике данных. Успешно запускал продукты с нуля и оптимизировал существующие, достигая увеличения эффективности команд на 60-90% и повышения показателей доставки до 80-90%.</p>
-                <p>Ключевые компетенции: построение roadmap, управление полным циклом разработки продукта, работа с Agile/Scrum, аналитика (SQL, Redshift, Looker, DBT), интеграции платежных систем, конкурентный анализ и исследования рынка.</p>
+                <!-- Intro Section -->
+                <div class="about-intro">
+                    <p data-lang-key="about-intro-1">Product Manager с 6+ годами опыта в Gambling, Fintech и SaaS.</p>
+                    <p data-lang-key="about-intro-2">Строю продуктовую стратегию, управляю кроссфункциональными командами до 17 человек, запускаю продукты с нуля и оптимизирую существующие.</p>
+                </div>
+                
+                <!-- Two Column Layout -->
+                <div class="about-columns">
+                    <!-- Left Column - Results -->
+                    <div class="about-column about-results">
+                        <div class="column-icon">📊</div>
+                        <h3 data-lang-key="about-results-title">Результаты</h3>
+                        <ul class="column-list">
+                            <li data-lang-key="about-result-1">60-90% эффективность команд</li>
+                            <li data-lang-key="about-result-2">80-90% доставка в срок</li>
+                            <li data-lang-key="about-result-3">Сокращение time-to-market на 70%+</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Right Column - Tools -->
+                    <div class="about-column about-tools">
+                        <div class="column-icon">🛠</div>
+                        <h3 data-lang-key="about-tools-title">Инструменты</h3>
+                        <ul class="column-list">
+                            <li data-lang-key="about-tool-1">Roadmap Development, Agile/Scrum</li>
+                            <li data-lang-key="about-tool-2">SQL/Redshift/Looker/DBT</li>
+                            <li data-lang-key="about-tool-3">Payment Systems, Market Research</li>
+                        </ul>
+                    </div>
+                </div>
                     <div class="skills-categorized">
                         <!-- Product Skills -->
                         <div class="skill-category">
@@ -132,7 +159,6 @@
                                 <span class="skill-tag skill-tag-1">Product Management</span>
                                 <span class="skill-tag skill-tag-1">Roadmap Development</span>
                                 <span class="skill-tag skill-tag-1">Agile/Scrum</span>
-                                <span class="skill-tag skill-tag-1">A/B Testing</span>
                                 <span class="skill-tag skill-tag-1">Customer Journey Mapping</span>
                             </div>
                         </div>
@@ -189,7 +215,7 @@
     <!-- Experience Section - New Design -->
     <section id="experience" class="section experience">
         <div class="container">
-            <h2 class="section-title">Опыт работы</h2>
+            <h2 class="section-title" data-lang-key="experience-title">Опыт работы</h2>
             
             <div class="timeline-horizontal">
                 <!-- Experience 1 - Current -->
@@ -429,8 +455,8 @@
                         <div class="exp-header">
                             <div class="exp-icon icon-green">📱</div>
                             <div class="exp-title-block">
-                                <h3>Project Manager</h3>
-                                <h4>e-Legion</h4>
+                        <h3>Project Manager</h3>
+                        <h4>e-Legion</h4>
                                 <span class="employment-badge full-time">Full-time</span>
                     </div>
                 </div>
@@ -448,59 +474,10 @@
                         <div class="exp-tags">
                             <span class="tag">Mobile Development</span>
                             <span class="tag">Scrum Implementation</span>
-                        </div>
+                </div>
                     </div>
                 </div>
 
-                <!-- Experience 7 -->
-                <div class="exp-item">
-                    <div class="exp-date">
-                        <span class="date-badge">📍 May 2019 - Jun 2021</span>
-                        <span class="duration">2 years</span>
-                    </div>
-                    
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div class="exp-icon icon-purple">📞</div>
-                            <div class="exp-title-block">
-                                <h3>Account Manager</h3>
-                                <h4>TELE2</h4>
-                                <span class="employment-badge full-time">Full-time</span>
-                            </div>
-                        </div>
-                        
-                        <p class="exp-description">
-                            Managed B2B accounts and customer relationships for telecommunications services.
-                        </p>
-                        
-                        <div class="exp-metrics">
-                            <div class="metric">
-                                <span class="metric-value">50+</span>
-                                <span class="metric-label">B2B clients</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">$2M+</span>
-                                <span class="metric-label">Annual revenue</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">95%</span>
-                                <span class="metric-label">Retention rate</span>
-                    </div>
-                </div>
-
-                        <ul class="exp-achievements">
-                            <li>Managed portfolio of 50+ B2B clients with combined revenue of $2M+ annually</li>
-                            <li>Achieved 95% client retention rate through proactive relationship management</li>
-                            <li>Collaborated with product team on feature requests and customer feedback integration</li>
-                        </ul>
-                        
-                        <div class="exp-tags">
-                            <span class="tag">B2B</span>
-                            <span class="tag">Account Management</span>
-                            <span class="tag">Telecom</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -508,135 +485,391 @@
     <!-- Case Studies -->
     <section id="case-studies" class="section case-studies">
         <div class="container">
-            <h2 class="section-title">📚 Case Studies</h2>
-            <p class="section-subtitle">Real examples of product impact and problem-solving</p>
+            <h2 class="section-title" data-lang-key="case-studies-title">📚 Case Studies</h2>
+            <p class="section-subtitle" data-lang-key="case-studies-subtitle">Real examples of product impact and problem-solving</p>
             
-            <div class="cases-grid">
-                <!-- Case 1: Payment Migration -->
-                <div class="case-card">
-                    <div class="case-header">
-                        <span class="case-tag fintech">Fintech</span>
-                        <span class="case-duration">6 months</span>
-                    </div>
-                    
-                    <h3>Payment Provider Migration</h3>
-                    
-                    <div class="case-stats">
-                        <div class="case-stat">
-                            <span class="stat-value">-25%</span>
-                            <span class="stat-label">Transaction costs</span>
-                        </div>
-                        <div class="case-stat">
-                            <span class="stat-value">+12%</span>
-                            <span class="stat-label">Conversion rate</span>
-                        </div>
-                        <div class="case-stat">
-                            <span class="stat-value">$500K</span>
-                            <span class="stat-label">Annual savings</span>
-                        </div>
-                    </div>
-                    
-                    <div class="case-content">
-                        <div class="case-section">
-                            <h4>🎯 Challenge</h4>
-                            <p>High transaction costs (3.5%) and low conversion rates (65%) were impacting profitability. Needed to migrate 2M+ active users without service disruption.</p>
+            <!-- Cases Carousel -->
+            <div class="cases-carousel-wrapper">
+                <button class="carousel-btn carousel-btn-prev" aria-label="Previous case">‹</button>
+                <div class="cases-carousel" id="casesCarousel">
+                    <!-- Case 1: От нуля до PM -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag product">Career Growth</span>
+                            <span class="case-duration">3 months</span>
                         </div>
                         
-                        <div class="case-section">
-                            <h4>💡 Solution</h4>
-                            <p>Analyzed 5 payment providers, conducted cost-benefit analysis, selected optimal provider based on fees/quality ratio. Implemented phased migration strategy with A/B testing.</p>
+                        <h3 data-lang-key="case-1-title">От нуля до PM: Первые шаги в карьере</h3>
+                        
+                        <div class="case-stats-compact">
+                            <div class="case-stat">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label" data-lang-key="case-1-stat-1">Хакатонов</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="stat-value">1</span>
+                                <span class="stat-label" data-lang-key="case-1-stat-2">Первая работа</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="stat-value">3 месяца</span>
+                                <span class="stat-label" data-lang-key="case-1-stat-3">До первого оффера</span>
+                            </div>
                         </div>
                         
-                        <div class="case-section">
-                            <h4>✅ Result</h4>
-                            <p>Successfully migrated all users with zero downtime. Reduced transaction costs to 2.6%, increased conversion to 73%, saved $500K annually.</p>
-                        </div>
-                    </div>
+                        <button class="case-expand-btn" data-case="1" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-1">
+                            <div class="case-content">
+                                <div class="case-section">
+                                    <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                                    <p data-lang-key="case-1-challenge">Прошел обучение по монетизации продукта, но не брали на позицию Product Manager из-за отсутствия практического опыта. Нужно было быстро набрать реальный опыт и доказать способность управлять продуктом.</p>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                                    <ul class="case-solution-list">
+                                        <li data-lang-key="case-1-solution-1">Участвовал в 5 хакатонах — собирал команды, описывал идею продукта, доводил до результата</li>
+                                        <li data-lang-key="case-1-solution-2">Быстро анализировал ошибки и извлекал уроки из каждого опыта</li>
+                                        <li data-lang-key="case-1-solution-3">Фокусировался на практических навыках: управление командой, описание требований, приоритизация</li>
+                                    </ul>
                 </div>
 
-                <!-- Case 2: Product Launch -->
-                <div class="case-card">
-                    <div class="case-header">
-                        <span class="case-tag product">Product Launch</span>
-                        <span class="case-duration">8 months</span>
-                    </div>
-                    
-                    <h3>Android POS System 0→1</h3>
-                    
-                    <div class="case-stats">
-                        <div class="case-stat">
-                            <span class="stat-value">30+</span>
-                            <span class="stat-label">Cities launched</span>
+                                <div class="case-section">
+                                    <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                                    <p data-lang-key="case-1-result">Несмотря на отсутствие побед, быстро собрал практический опыт и получил первую работу в качестве менеджера проектов. Опыт хакатонов стал фундаментом для дальнейшего роста в PM.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="case-stat">
-                            <span class="stat-value">500+</span>
-                            <span class="stat-label">Active devices</span>
-                        </div>
-                        <div class="case-stat">
-                            <span class="stat-value">99.8%</span>
-                            <span class="stat-label">System uptime</span>
-                        </div>
-                    </div>
-                    
-                    <div class="case-content">
-                        <div class="case-section">
-                            <h4>🎯 Challenge</h4>
-                            <p>Build enterprise-grade POS system from scratch for multi-location retail chain. Tight 8-month deadline, complex requirements, multiple stakeholders.</p>
-                        </div>
-                        
-                        <div class="case-section">
-                            <h4>💡 Solution</h4>
-                            <p>Implemented Agile methodology with 2-week sprints. Created MVP in 3 months, gathered feedback from 5 pilot stores, iterated based on real usage data.</p>
-                        </div>
-                        
-                        <div class="case-section">
-                            <h4>✅ Result</h4>
-                            <p>Launched on time in 30 cities across 5 countries. 500+ devices deployed, 99.8% uptime maintained, positive feedback from 95% of users.</p>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Case 3: Process Improvement -->
-                <div class="case-card">
-                    <div class="case-header">
-                        <span class="case-tag process">Process</span>
-                        <span class="case-duration">4 months</span>
-                    </div>
-                    
-                    <h3>Team Efficiency 50%→90%</h3>
-                    
-                    <div class="case-stats">
-                        <div class="case-stat">
-                            <span class="stat-value">+80%</span>
-                            <span class="stat-label">Productivity</span>
+                    <!-- Case 2: Доставка в новогодние праздники -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag delivery">Delivery</span>
+                            <span class="case-duration">2 weeks</span>
                         </div>
-                        <div class="case-stat">
-                            <span class="stat-value">3x</span>
-                            <span class="stat-label">Feature throughput</span>
+                        
+                        <h3 data-lang-key="case-2-title">Доставка проекта в новогодние праздники</h3>
+                        
+                        <div class="case-stats-compact">
+                            <div class="case-stat">
+                                <span class="stat-value">2</span>
+                                <span class="stat-label" data-lang-key="case-2-stat-1">Разработчика</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="stat-value">0 задержек</span>
+                                <span class="stat-label" data-lang-key="case-2-stat-2">Идеальная доставка</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="stat-value">1</span>
+                                <span class="stat-label" data-lang-key="case-2-stat-3">Новый контракт</span>
+                            </div>
                         </div>
-                        <div class="case-stat">
-                            <span class="stat-value">90%</span>
-                            <span class="stat-label">Sprint completion</span>
-                        </div>
-                    </div>
-                    
-                    <div class="case-content">
+                        
+                        <button class="case-expand-btn" data-case="2" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-2">
+                            <div class="case-content">
                         <div class="case-section">
-                            <h4>🎯 Challenge</h4>
-                            <p>Team consistently completing only 50% of planned sprint work. Frequent delays, missed deadlines, frustrated stakeholders.</p>
+                            <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                            <p data-lang-key="case-2-challenge">Первое рабочее место — крупный проект на сложную верстку. Сроки совпали с новогодними праздниками, когда большинство команды в отпуске. Минимальный состав команды — всего 2 разработчика.</p>
                         </div>
                         
                         <div class="case-section">
-                            <h4>💡 Solution</h4>
-                            <p>Analyzed root causes: poor estimation, unclear requirements, technical debt. Implemented story points, Definition of Done, improved grooming process, allocated 20% time for tech debt.</p>
+                            <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                            <ul class="case-solution-list">
+                                <li data-lang-key="case-2-solution-1">Оптимизировал процесс работы с учетом ограниченных ресурсов</li>
+                                <li data-lang-key="case-2-solution-2">Организовал эффективную коммуникацию между разработчиками</li>
+                                <li data-lang-key="case-2-solution-3">Приоритизировал задачи для максимальной эффективности</li>
+                                <li data-lang-key="case-2-solution-4">Обеспечил качественную доставку проекта в срок</li>
+                            </ul>
                         </div>
                         
                         <div class="case-section">
-                            <h4>✅ Result</h4>
-                            <p>Sprint completion rate increased to consistent 90%. Team velocity tripled. On-time delivery improved from 50% to 85%. Team satisfaction scores up 40%.</p>
+                            <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                            <p data-lang-key="case-2-result">Проект успешно доставлен в срок. Клиент вернулся с новым большим контрактом, что подтвердило качество работы и надежность команды.</p>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 3: Рост эффективности команды в крипто -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag process">Process</span>
+                            <span class="case-duration">2 months</span>
+                        </div>
+                        
+                        <h3 data-lang-key="case-3-title">Рост эффективности команды в криптопроекте</h3>
+                        
+                        <div class="case-stats-compact">
+                        <div class="case-stat">
+                            <span class="stat-value">50→80%</span>
+                            <span class="stat-label" data-lang-key="case-3-stat-1">Эффективность</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label" data-lang-key="case-3-stat-2">Доски</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">-60%</span>
+                            <span class="stat-label" data-lang-key="case-3-stat-3">Время на уточнения</span>
+                        </div>
+                        </div>
+                        
+                        <button class="case-expand-btn" data-case="3" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-3">
+                            <div class="case-content">
+                                <div class="case-section">
+                                    <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                                    <p data-lang-key="case-3-challenge">В криптопроекте не было четкости в процессах. Продукт заводил свои задачи на общую доску разработки, что создавало путаницу и снижало эффективность команды. Задачи приходили в разработку непродуманными и плохо описанными.</p>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                                    <ul class="case-solution-list">
+                                        <li data-lang-key="case-3-solution-1">Создал отдельную доску для менеджера продукта</li>
+                                        <li data-lang-key="case-3-solution-2">На доске разработки оставил только задачи, которые точно надо делать</li>
+                                        <li data-lang-key="case-3-solution-3">Внедрил процесс предварительной проработки задач перед передачей в разработку</li>
+                                        <li data-lang-key="case-3-solution-4">Обеспечил четкое описание требований и контекста для каждой задачи</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                                    <p data-lang-key="case-3-result">Эффективность команды увеличилась — закрывали до 80% задач. Задачи приходили в разработку продуманными и описанными, что сократило время на уточнения и переделки.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 4: Фреймворк предсказуемости интеграций -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag fintech">Gambling</span>
+                            <span class="case-duration">3 months</span>
+                        </div>
+                        
+                        <h3 data-lang-key="case-4-title">Фреймворк предсказуемости интеграций</h3>
+                        
+                        <div class="case-stats-compact">
+                        <div class="case-stat">
+                            <span class="stat-value">50→80%</span>
+                            <span class="stat-label" data-lang-key="case-4-stat-1">Попадание в срок</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">1</span>
+                            <span class="stat-label" data-lang-key="case-4-stat-2">Стандартный план</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">-70%</span>
+                            <span class="stat-label" data-lang-key="case-4-stat-3">Время планирования</span>
+                        </div>
+                        </div>
+                        
+                        <button class="case-expand-btn" data-case="4" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-4">
+                            <div class="case-content">
+                                <div class="case-section">
+                                    <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                                    <p data-lang-key="case-4-challenge">Работа с гемблинг платформой. Прогнозирование интеграций было слабым — половина выходила за рамки сроков. Не было единого подхода к планированию, что приводило к непредсказуемым задержкам и переработкам.</p>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                                    <ul class="case-solution-list">
+                                        <li data-lang-key="case-4-solution-1">Выяснил, что интеграции подчиняются одному шаблону</li>
+                                        <li data-lang-key="case-4-solution-2">Ввел новый процесс планирования: с новой интеграцией открывали стандартный план в MIRO</li>
+                                        <li data-lang-key="case-4-solution-3">Фиксировали требования и риски на раннем этапе</li>
+                                        <li data-lang-key="case-4-solution-4">Формировали список вопросов для технического аккаунт-менеджера клиента заранее</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                                    <p data-lang-key="case-4-result">Попадание в срок улучшилось до 80%. Стандартизация процесса позволила предсказывать риски и сроки, сократила время на планирование и улучшила качество интеграций.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 5: Система отслеживания обращений клиента -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag support">Support</span>
+                            <span class="case-duration">1 month</span>
+                        </div>
+                        
+                        <h3 data-lang-key="case-5-title">Система отслеживания обращений клиента</h3>
+                        
+                        <div class="case-stats-compact">
+                        <div class="case-stat">
+                            <span class="stat-value">1</span>
+                            <span class="stat-label" data-lang-key="case-5-stat-1">Confluence страница</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">15мин→30сек</span>
+                            <span class="stat-label" data-lang-key="case-5-stat-2">Поиск тикетов</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label" data-lang-key="case-5-stat-3">Потерянных тикетов</span>
+                        </div>
+                        </div>
+                        
+                        <button class="case-expand-btn" data-case="5" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-5">
+                            <div class="case-content">
+                                <div class="case-section">
+                                    <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                                    <p data-lang-key="case-5-challenge">Работа с support командой с крупным клиентом в Америке (сайт с товарами). Support и Dev команды были разными. Когда клиент жаловался, Support не мог быстро найти тикет или список обращений. Проблема: клиент мог иметь несколько имен для компаний, но ссылка на бекенде одинаковая.</p>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                                    <ul class="case-solution-list">
+                                        <li data-lang-key="case-5-solution-1">Настроил JIRA — из адреса на бекенде вытаскивать ID</li>
+                                        <li data-lang-key="case-5-solution-2">По этому ID настроил фильтр для быстрого поиска всех тикетов клиента</li>
+                                        <li data-lang-key="case-5-solution-3">Сделал Confluence страницу — по ссылке клиента можно посмотреть все тикеты</li>
+                                        <li data-lang-key="case-5-solution-4">Добавил возможность поставить тикет на разработку и отследить статус</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                                    <p data-lang-key="case-5-result">Support команда получила возможность быстро находить все обращения клиента, независимо от названия компании. Прозрачность процесса улучшила коммуникацию между Support и Dev командами, сократила время на поиск информации.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 6: Автоматизация онбординга клиентов -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag automation">Automation</span>
+                            <span class="case-duration">2 months</span>
+                        </div>
+                        
+                        <h3 data-lang-key="case-6-title">Автоматизация онбординга клиентов</h3>
+                        
+                        <div class="case-stats-compact">
+                        <div class="case-stat">
+                            <span class="stat-value">4→2 часа</span>
+                            <span class="stat-label" data-lang-key="case-6-stat-1">Время онбординга</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">8→0.5 ч</span>
+                            <span class="stat-label" data-lang-key="case-6-stat-2">Время разработчика</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">95%</span>
+                            <span class="stat-label" data-lang-key="case-6-stat-3">Сокращение ошибок</span>
+                        </div>
+                        </div>
+                        
+                        <button class="case-expand-btn" data-case="6" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-6">
+                            <div class="case-content">
+                                <div class="case-section">
+                                    <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                                    <p data-lang-key="case-6-challenge">При добавлении нового клиента возникали проблемы с данными. Разные POS — разные варианты представления информации о товарах. Support тратил время на перевод данных вручную, допускал ошибки. Разработчику приходилось тратить время на уточнения. Добавление клиента растягивалось до 4 дней.</p>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                                    <ul class="case-solution-list">
+                                        <li data-lang-key="case-6-solution-1">Создал на основе Python систему переработки данных в нужный формат</li>
+                                        <li data-lang-key="case-6-solution-2">Автоматизировал процесс конвертации данных из разных форматов POS</li>
+                                        <li data-lang-key="case-6-solution-3">Добавил возможность для Support самостоятельно загружать данные через систему</li>
+                                        <li data-lang-key="case-6-solution-4">Внедрил валидацию данных для предотвращения ошибок</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                                    <p data-lang-key="case-6-result">Сократил ручную работу с 2-4 дней до 1-2 часов. Сократил время работы разработчика с 8 часов до 30 минут при ошибках с дублированием. Система автоматически обрабатывает данные и предотвращает большинство ошибок.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 7: AI-ассистент для аналитики данных -->
+                    <div class="case-card-compact">
+                        <div class="case-compact-header">
+                            <span class="case-tag ai">AI</span>
+                            <span class="case-duration">3 months</span>
+                        </div>
+                        
+                        <h3 data-lang-key="case-7-title">AI-ассистент для аналитики данных</h3>
+                        
+                        <div class="case-stats-compact">
+                        <div class="case-stat">
+                            <span class="stat-value">1</span>
+                            <span class="stat-label" data-lang-key="case-7-stat-1">Junior+ разработчик</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">0 часов</span>
+                            <span class="stat-label" data-lang-key="case-7-stat-2">Senior времени</span>
+                        </div>
+                        <div class="case-stat">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label" data-lang-key="case-7-stat-3">Нагрузка на лида</span>
+                        </div>
+                        </div>
+                        
+                        <button class="case-expand-btn" data-case="7" aria-label="Expand case details">
+                            <span class="expand-icon">▼</span>
+                            <span class="expand-text" data-lang-key="btn-expand">Подробнее</span>
+                        </button>
+                        
+                        <div class="case-full-content" id="case-7">
+                            <div class="case-content">
+                                <div class="case-section">
+                                    <h4>🎯 <span data-lang-key="case-challenge">Challenge</span></h4>
+                                    <p data-lang-key="case-7-challenge">У клиентов была система работы с данными на основе Looker. Когда ушел аналитик данных, самостоятельно научился настраивать отчеты. У CEO возникла идея использовать AI помощника для Looker. Оказалось, что готовое решение не подходит для архитектуры. Нужно было найти open-source структуру и развернуть сервис без нагрузки на лида frontend разработки.</p>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>💡 <span data-lang-key="case-solution">Solution</span></h4>
+                                    <ul class="case-solution-list">
+                                        <li data-lang-key="case-7-solution-1">Нашли готовую open-source структуру, подходящую для архитектуры</li>
+                                        <li data-lang-key="case-7-solution-2">Убедил CEO, что не нужно ставить лида frontend разработки (у него нагруженная работа)</li>
+                                        <li data-lang-key="case-7-solution-3">Поставили разработчика уровня Junior+</li>
+                                        <li data-lang-key="case-7-solution-4">Организовал процесс так, чтобы frontend разработчик самостоятельно развернул сервис</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="case-section">
+                                    <h4>✅ <span data-lang-key="case-result">Result</span></h4>
+                                    <p data-lang-key="case-7-result">Frontend разработчик самостоятельно развернул сервис. Лид frontend не был загружен дополнительной работой. AI-ассистент успешно интегрирован в систему аналитики, улучшив работу с данными для клиентов.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <button class="carousel-btn carousel-btn-next" aria-label="Next case">›</button>
             </div>
         </div>
     </section>
@@ -644,7 +877,7 @@
     <!-- Repositories Section -->
     <section id="repositories" class="repositories">
         <div class="container">
-            <h2>GitHub проекты</h2>
+            <h2 data-lang-key="projects-title">Pet Projects</h2>
             <div class="repos-grid">
                 <!-- Repository Card 1 -->
                 <div class="repo-card">
@@ -652,12 +885,12 @@
                         <h3>Портфолио-сайт | Portfolio Website</h3>
                         <span class="repo-language">JavaScript</span>
                     </div>
-                    <p>Современный адаптивный сайт-портфолио для размещения на GitHub Pages с поддержкой видео-визитки, опыта работы, статей и проектов.</p>
+                    <p data-lang-key="project-1-desc">Современный адаптивный сайт-портфолио для размещения на GitHub Pages с поддержкой видео-визитки, опыта работы, статей и проектов.</p>
                     <div class="repo-stats">
                         <span>⭐ 0</span>
                         <span>🔱 0</span>
                     </div>
-                    <a href="https://github.com/Nikolay-Bogatyrev/portfolio-site" target="_blank" class="btn-primary">Смотреть на GitHub</a>
+                    <a href="https://github.com/Nikolay-Bogatyrev/portfolio-site" target="_blank" class="btn-primary" data-lang-key="btn-view-github">Смотреть на GitHub</a>
                 </div>
 
                 <!-- Repository Card 2 -->
@@ -666,47 +899,20 @@
                         <h3>Zettelkasten Cards - GitHub Pages</h3>
                         <span class="repo-language">HTML</span>
                     </div>
-                    <p>Статическая версия шаблона карточек Zettelkasten для публикации на GitHub Pages. Шаблон для печати карточек Zettelkasten - системы организации знаний с использованием карточек-заметок. Оптимизирован для печати на формате A4.</p>
+                    <p data-lang-key="project-2-desc">Статическая версия шаблона карточек Zettelkasten для публикации на GitHub Pages. Шаблон для печати карточек Zettelkasten - системы организации знаний с использованием карточек-заметок. Оптимизирован для печати на формате A4.</p>
                     <div class="repo-stats">
                         <span>⭐ 0</span>
                         <span>🔱 0</span>
                     </div>
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <a href="https://nikolay-bogatyrev.github.io/-Zettelkasten-templates/" target="_blank" class="btn-primary">Демо</a>
-                        <a href="https://github.com/Nikolay-Bogatyrev/-Zettelkasten-templates" target="_blank" class="btn-primary">Смотреть на GitHub</a>
+                        <a href="https://nikolay-bogatyrev.github.io/-Zettelkasten-templates/" target="_blank" class="btn-primary" data-lang-key="btn-demo">Демо</a>
+                        <a href="https://github.com/Nikolay-Bogatyrev/-Zettelkasten-templates" target="_blank" class="btn-primary" data-lang-key="btn-view-github">Смотреть на GitHub</a>
                     </div>
                 </div>
 
-                <!-- Repository Card 3 -->
-                <div class="repo-card">
-                    <div class="repo-header">
-                        <h3>Название проекта 3</h3>
-                        <span class="repo-language">Python</span>
-                    </div>
-                    <p>Описание второго проекта.</p>
-                    <div class="repo-stats">
-                        <span>⭐ 28</span>
-                        <span>🔱 8</span>
-                    </div>
-                    <a href="https://github.com/Nikolay-Bogatyrev" target="_blank" class="btn-primary">Смотреть на GitHub</a>
-                </div>
-
-                <!-- Repository Card 4 -->
-                <div class="repo-card">
-                    <div class="repo-header">
-                        <h3>Название проекта 4</h3>
-                        <span class="repo-language">TypeScript</span>
-                    </div>
-                    <p>Описание третьего проекта.</p>
-                    <div class="repo-stats">
-                        <span>⭐ 35</span>
-                        <span>🔱 12</span>
-                    </div>
-                    <a href="https://github.com/Nikolay-Bogatyrev" target="_blank" class="btn-primary">Смотреть на GitHub</a>
-                </div>
             </div>
             <div class="text-center">
-                <a href="https://github.com/Nikolay-Bogatyrev" target="_blank" class="btn-secondary">Все проекты на GitHub</a>
+                <a href="https://github.com/Nikolay-Bogatyrev" target="_blank" class="btn-secondary" data-lang-key="btn-all-projects">Все проекты на GitHub</a>
             </div>
         </div>
     </section>
@@ -714,9 +920,9 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Контакты</h2>
+            <h2 data-lang-key="contact-title">Контакты</h2>
             <div class="contact-content">
-                <p>Свяжитесь со мной через социальные сети или отправьте email</p>
+                <p data-lang-key="contact-description">Свяжитесь со мной через социальные сети или отправьте email</p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/koleneb/" target="_blank" class="social-btn">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -750,7 +956,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Николай Богатырев. Все права защищены.</p>
+            <p>&copy; 2024 <span data-lang-key="footer-name">Николай Богатырев</span>. <span data-lang-key="footer-rights">Все права защищены</span>.</p>
         </div>
     </footer>
 
