@@ -1,819 +1,422 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+/* ========================================================
+   Portfolio Site — script.js
+   ======================================================== */
+
+(function () {
+  'use strict';
+
+  /* -------------------------------------------------------
+     1. TRANSLATIONS
+     ------------------------------------------------------- */
+  const translations = {
+    // Nav
+    'nav-experience': { ru: 'Опыт', en: 'Experience' },
+    'nav-achievements': { ru: 'Достижения', en: 'Achievements' },
+    'nav-cases': { ru: 'Кейсы', en: 'Cases' },
+    'nav-skills': { ru: 'Навыки', en: 'Skills' },
+    'nav-contact': { ru: 'Контакты', en: 'Contact' },
+
+    // Header
+    'btn-download-cv': { ru: 'Скачать CV', en: 'Download CV' },
+
+    // Hero
+    'hero-title': { ru: 'Я создаю продукты,<br>которые приносят результат.', en: 'I build products<br>that deliver results.' },
+    'hero-subtitle': { ru: 'Technical Product Manager — соединяю продуктовую стратегию и инженерную реализацию. 6+ лет в SaaS, Fintech и платформенных продуктах на рынке EMEA.', en: 'Technical Product Manager — bridging product strategy and engineering execution. 6+ years shipping SaaS, Fintech, and Platform products across EMEA.' },
+    'btn-download': { ru: 'Скачать CV', en: 'Download CV' },
+    'btn-contact': { ru: 'Связаться', en: 'Get in Touch' },
+
+    // Metrics
+    'metric-1': { ru: 'Sprint Efficiency', en: 'Sprint Efficiency' },
+    'metric-2': { ru: 'Рост Throughput', en: 'Throughput Growth' },
+    'metric-3': { ru: 'Макс. команда', en: 'Max Team Size' },
+    'metric-4': { ru: 'On-Time Delivery', en: 'On-Time Delivery' },
+
+    // Experience section
+    'exp-title': { ru: 'Опыт работы', en: 'Experience' },
+    'exp-subtitle': { ru: '6+ лет создания продуктов в SaaS, Fintech и платформенных компаниях', en: '6+ years building products across SaaS, Fintech, and Platform companies' },
+
+    // Experience cards
+    'exp-1-date': { ru: 'Авг 2025 — настоящее время', en: 'Aug 2025 — Present' },
+    'exp-1-type': { ru: 'Полная занятость', en: 'Full-time' },
+    'exp-1-role': { ru: 'Product Manager', en: 'Product Manager' },
+    'exp-1-company': { ru: 'NDA — Gambling-платформа', en: 'Confidential — Gambling Platform' },
+    'exp-1-desc': { ru: 'Веду продуктовую стратегию для платформы с миллионами пользователей. Полный цикл продукта: бонусные системы, платёжные интеграции, функции вовлечения. Команда 17+.', en: 'Leading product strategy for platform serving millions of users. End-to-end lifecycle for bonus systems, payment integrations, engagement features. Team of 17+.' },
+
+    'exp-2-date': { ru: 'Ноя 2024 — Июнь 2025', en: 'Nov 2024 — Jun 2025' },
+    'exp-2-type': { ru: 'Контракт', en: 'Contract' },
+    'exp-2-role': { ru: 'Project Manager', en: 'Project Manager' },
+    'exp-2-company': { ru: 'Star IT — Маркетплейс и Android POS', en: 'Star IT — Marketplace & Android POS' },
+    'exp-2-desc': { ru: 'Запуск 0→1 POS (500+ устройств, 30+ городов). Delivery 50→80%. Голосовая AI-аналитика. Миграция Looker в облако, $50K/год экономии.', en: '0→1 POS launch (500+ devices, 30+ cities). Delivery 50→80%. Voice AI analytics. Looker cloud migration, zero downtime, $50K/yr savings.' },
+
+    'exp-3-date': { ru: 'Окт 2023 — Июль 2024', en: 'Oct 2023 — Jul 2024' },
+    'exp-3-type': { ru: 'Полная занятость', en: 'Full-time' },
+    'exp-3-role': { ru: 'Project Manager', en: 'Project Manager' },
+    'exp-3-company': { ru: 'Slotegrator — SaaS игровых интеграций', en: 'Slotegrator — SaaS Game Integrations' },
+    'exp-3-desc': { ru: 'Команда 17 человек. On-time delivery 50→80%. Throughput ×3. Аналитический процесс с нуля. Онбординг: 3 мес → 1 мес.', en: 'Team of 17. On-time delivery 50→80%. Throughput ×3. Built analytics process from scratch. Onboarding: 3mo → 1mo.' },
+
+    'exp-4-date': { ru: 'Апр 2022 — Окт 2023', en: 'Apr 2022 — Oct 2023' },
+    'exp-4-type': { ru: 'Полная занятость', en: 'Full-time' },
+    'exp-4-role': { ru: 'Project Manager', en: 'Project Manager' },
+    'exp-4-company': { ru: 'NDA — Крипто-обменник', en: 'Confidential — Crypto Exchange Aggregator' },
+    'exp-4-desc': { ru: 'Пивот B2C→B2B. 2 версии API + виджет для сторонних платформ. Миграция сервер→облако. Sprint efficiency 50→90%.', en: 'B2C→B2B pivot. 2 API versions + widget for third-party platforms. Server→cloud migration. Sprint efficiency 50→90%.' },
+
+    'exp-5-date': { ru: '2018 — 2022', en: '2018 — 2022' },
+    'exp-5-type': { ru: '~3.5 года', en: '~3.5 years' },
+    'exp-5-role': { ru: 'PM → Senior Project Manager', en: 'PM → Senior Project Manager' },
+    'exp-5-company': { ru: 'e-Legion · Heads and Hands · Лига А', en: 'e-Legion · Heads and Hands · Liga A' },
+    'exp-5-desc': { ru: 'Tele2 (топ-3 телеком), приложения апарт-отелей, диджитал-продукты. Вырос до Senior PM, вёл A-tier проекты. Рентабельность 17%.', en: 'Tele2 (top-3 telecom), apart-hotel apps, digital products. Grew to Senior PM selling A-tier projects. 17% project profitability.' },
+
+    'badge-current': { ru: 'СЕЙЧАС', en: 'CURRENT' },
+
+    // Achievements
+    'ach-title': { ru: 'Ключевые достижения', en: 'Key Achievements' },
+    'ach-subtitle': { ru: 'Истории влияния в формате Ситуация → Задача → Действие → Результат', en: 'Impact stories in Situation → Task → Action → Result format' },
+
+    'ach-1-title': { ru: 'Пивот продукта B2C → B2B', en: 'Product Pivot B2C → B2B' },
+    'ach-1-s': { ru: 'Крипто-обменник для конечных пользователей не находил product-market fit', en: 'Crypto exchange aggregator serving end-users wasn\'t finding product-market fit' },
+    'ach-1-t': { ru: 'Перевести продуктовую модель на B2B с white-label интеграциями', en: 'Pivot the product model to serve B2B clients with white-label integrations' },
+    'ach-1-a': { ru: 'Разработал 2 версии API + встраиваемый виджет. Провёл миграцию сервер → облако', en: 'Led development of 2 API versions + embeddable widget. Managed full server → cloud migration' },
+    'ach-1-r': { ru: 'Сторонние платформы интегрировали обмен. Sprint efficiency 50 → 90%', en: 'Third-party platforms integrated exchange. Sprint efficiency 50 → 90%' },
+
+    'ach-2-title': { ru: 'Предсказуемость поставки ×3', en: 'Delivery Predictability ×3' },
+    'ach-2-s': { ru: 'Команда 17 человек, только 50% задач в срок, 1 фича в месяц', en: 'Team of 17, only 50% tasks on time, 1 feature shipped per month' },
+    'ach-2-t': { ru: 'Сделать поставку предсказуемой и увеличить throughput команды', en: 'Make delivery predictable and increase team throughput' },
+    'ach-2-a': { ru: 'Ввёл итеративное планирование, построил аналитический процесс с нуля, спроектировал онбординг', en: 'Introduced iterative planning, built analytics process from scratch, designed onboarding program' },
+    'ach-2-r': { ru: '80% on-time delivery, 3 фичи/мес, онбординг 3мес → 1мес', en: '80% on-time delivery, 3 features/month, onboarding 3mo → 1mo' },
+
+    'ach-3-title': { ru: 'Запуск Android POS 0→1', en: '0→1 Android POS Launch' },
+    'ach-3-s': { ru: 'Маркетплейсу нужно было омниканальное расширение, мобильного POS не было', en: 'Marketplace needed omnichannel expansion, no mobile POS solution existed' },
+    'ach-3-t': { ru: 'Запустить Android POS от концепции до продакшена в 30+ городах', en: 'Launch Android POS from concept to production across 30+ cities' },
+    'ach-3-a': { ru: 'Полное управление жизненным циклом, agile, кросс-командная координация', en: 'Full lifecycle management, agile implementation, cross-team coordination with support & dev' },
+    'ach-3-r': { ru: '500+ устройств, 30+ городов, delivery 50 → 80%', en: '500+ devices live, 30+ cities, delivery improved 50 → 80%' },
+
+    'ach-4-title': { ru: 'Победа на хакатоне: Образование', en: 'Hackathon Win: Education' },
+    'ach-4-s': { ru: 'MoscowCityHack 2021, трек образование, 25 команд-соперников', en: 'MoscowCityHack 2021, education track, 25 competing teams' },
+    'ach-4-t': { ru: 'Создать MVP-победитель с командой незнакомцев за 10 дней', en: 'Build a winning MVP with a team of complete strangers in 10 days' },
+    'ach-4-a': { ru: 'Собрал команду без тех.бэкграунда, использовал только фасилитацию + MIRO', en: 'Assembled team with zero tech background, used only facilitation + MIRO for alignment' },
+    'ach-4-r': { ru: '1-е место из 25 команд. От интервью до MVP за 10 дней', en: '1st place out of 25 teams. User interviews → working MVP in 10 days' },
+
+    // Case Studies
+    'cases-title': { ru: 'Кейсы', en: 'Case Studies' },
+    'cases-subtitle': { ru: 'Реальные примеры продуктового влияния и решения проблем', en: 'Real examples of product impact and problem-solving' },
+
+    'case-1-title': { ru: 'Рост эффективности команды в крипто-проекте', en: 'Team Efficiency Growth in Crypto Project' },
+    'case-1-desc': { ru: 'Создал раздельные доски, внедрил процесс предварительной проработки задач. Эффективность команды достигла 80%.', en: 'Created separate boards, implemented pre-elaboration process. Team efficiency reached 80%.' },
+    'case-1-stat-1-label': { ru: 'Выполнение задач', en: 'Task Completion' },
+    'case-1-stat-2-label': { ru: 'Время на уточнения', en: 'Clarification Time' },
+
+    'case-2-title': { ru: 'Фреймворк предсказуемости интеграций', en: 'Integration Predictability Framework' },
+    'case-2-desc': { ru: 'Обнаружил, что интеграции следуют одному паттерну. Ввёл стандартный план MIRO для каждой новой интеграции.', en: 'Discovered integrations follow one pattern. Introduced standard MIRO plan for each new integration.' },
+    'case-2-stat-1-label': { ru: 'On-Time Delivery', en: 'On-Time Delivery' },
+    'case-2-stat-2-label': { ru: 'Время планирования', en: 'Planning Time' },
+
+    'case-3-title': { ru: 'AI-ассистент для аналитики данных', en: 'AI Assistant for Data Analytics' },
+    'case-3-desc': { ru: 'Нашёл open-source решение, назначил Junior+ разработчика, который самостоятельно развернул Looker AI сервис.', en: 'Found open-source structure, assigned Junior+ developer who independently deployed the Looker AI service.' },
+    'case-3-stat-1-label': { ru: 'Часов Senior\'ов', en: 'Senior Hours Needed' },
+
+    // Skills
+    'skills-title': { ru: 'Навыки и инструменты', en: 'Skills & Tools' },
+    'skills-product': { ru: 'Продукт', en: 'Product' },
+    'skills-technical': { ru: 'Технические', en: 'Technical' },
+    'skills-domains': { ru: 'Домены', en: 'Domains' },
+    'skills-ai': { ru: 'AI и Vibe Coding', en: 'AI & Vibe Coding' },
+    'skill-claude-code': { ru: 'Claude Code', en: 'Claude Code' },
+    'skill-cursor': { ru: 'Cursor', en: 'Cursor' },
+    'skill-vibe-coding': { ru: '0→1 Vibe Coding', en: '0→1 Vibe Coding' },
+    'skill-ai-tools': { ru: 'AI-инструменты', en: 'AI Tools' },
+    'skills-ai-note': { ru: 'Использую AI-инструменты на всех этапах продуктового цикла — от исследований и прототипирования до деплоя. Могу обучить команду AI-воркфлоу.', en: 'I use AI tools across the full product lifecycle — from research and prototyping to deployment. Can train teams to adopt AI workflows.' },
+
+    // Vibe-Coded MVPs
+    'mvps-title': { ru: 'Vibe-Coded MVP', en: 'Vibe-Coded MVPs' },
+    'mvps-subtitle': { ru: 'Продукты, которые я создал как Product Manager используя AI-разработку (Claude Code, Cursor)', en: 'Products I built as Product Manager using AI-assisted development (Claude Code, Cursor)' },
+    'mvp-1-title': { ru: 'SaveSM — LinkedIn Copilot', en: 'SaveSM — LinkedIn Copilot' },
+    'mvp-1-desc': { ru: 'Геймифицированный контент-планер для TPM/PM. Превращает рабочие достижения в посты LinkedIn через JTBD-фреймворк. Голосовой ввод, Telegram Mini App, синхронизация с GitHub.', en: 'Gamified content planning tool for TPM/PM. Turns work achievements into LinkedIn posts via JTBD framework. Voice input, Telegram Mini App, GitHub sync.' },
+    'mvp-2-title': { ru: 'BoardGame Copilot', en: 'BoardGame Copilot' },
+    'mvp-2-desc': { ru: 'AI-ассистент для настольных игр на iPad. Отвечает на вопросы по правилам с цитатами и номерами страниц за 10 секунд. RAG, тёмная тема, офлайн.', en: 'AI assistant for board games on iPad. Answers rules questions with citations and page references in under 10 seconds. RAG-based, dark theme, offline-ready.' },
+    'mvp-3-title': { ru: 'MovePlan', en: 'MovePlan' },
+    'mvp-3-desc': { ru: 'Совместный планировщик переезда. Планы этажей с drag-and-drop, библиотека объектов через GitHub Projects, бюджет. PWA + Telegram-бот.', en: 'Collaborative moving planner. Floor plans with drag-and-drop furniture, object library synced with GitHub Projects, budget tracking. PWA + Telegram bot.' },
+    'mvp-view': { ru: 'Открыть проект', en: 'View project' },
+
+    // Contact
+    'contact-title': { ru: 'Давайте создадим что-то вместе.', en: 'Let\'s build something together.' },
+    'contact-subtitle': { ru: 'Открыт для позиций Technical Product Manager и Product Manager в SaaS и EdTech.', en: 'Open to Technical Product Manager and Product Manager roles in SaaS and EdTech.' },
+
+    // Footer
+    'footer-copy': { ru: '\u00A9 2025 Николай Богатырев', en: '\u00A9 2025 Nikolai Bogatyrev' },
+  };
+
+  /* -------------------------------------------------------
+     2. SMOOTH SCROLLING
+     ------------------------------------------------------- */
+  function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+      });
     });
-});
+  }
 
-// Add active class to navigation on scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= (sectionTop - 100)) {
-            current = section.getAttribute('id');
+  /* -------------------------------------------------------
+     3. ACTIVE NAV HIGHLIGHTING ON SCROLL
+     ------------------------------------------------------- */
+  function initActiveNav() {
+    function update() {
+      var current = '';
+      var sections = document.querySelectorAll('section[id]');
+
+      sections.forEach(function (section) {
+        var top = section.offsetTop;
+        if (window.scrollY >= top - 120) {
+          current = section.getAttribute('id');
         }
-    });
+      });
 
-    document.querySelectorAll('.nav-menu a').forEach(link => {
+      document.querySelectorAll('.nav-menu a').forEach(function (link) {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
         }
-    });
-});
+      });
+    }
 
-// Intersection Observer for animations on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  /* -------------------------------------------------------
+     4. INTERSECTION OBSERVER — FADE-IN ANIMATIONS
+     ------------------------------------------------------- */
+  function initScrollAnimations() {
+    var observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px',
+    };
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
+      });
+    }, observerOptions);
+
+    var selectors = '.exp-card, .achievement-card, .case-card, .skill-column, .mvp-card';
+    document.querySelectorAll(selectors).forEach(function (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
     });
-}, observerOptions);
+  }
 
-// Observe elements for animation
-document.querySelectorAll('.timeline-item, .article-card, .repo-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Mobile menu toggle
-const initMobileMenu = () => {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
+  /* -------------------------------------------------------
+     5. MOBILE MENU
+     ------------------------------------------------------- */
+  function initMobileMenu() {
+    var hamburger = document.querySelector('.hamburger');
+    var navMenu = document.querySelector('.nav-menu');
     if (!hamburger || !navMenu) return;
-    
-    // Toggle menu on hamburger click
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+      hamburger.classList.add('active');
+      navMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Toggle on hamburger click
+    hamburger.addEventListener('click', function () {
+      if (navMenu.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
-    
-    // Close menu when clicking on a link
-    navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+
+    // Close on link click
+    navMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
     });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          closeMenu();
         }
+      }
     });
-    
-    // Handle window resize
-    const handleResize = () => {
-        if (window.innerWidth > 768) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    };
-    
-    window.addEventListener('resize', handleResize);
-};
 
-// Initialize mobile menu
-initMobileMenu();
+    // Close on resize to desktop
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
+    });
+  }
 
-// Add scroll effect to header
-let lastScroll = 0;
-const header = document.querySelector('.header');
+  /* -------------------------------------------------------
+     6. HEADER HIDE / SHOW ON SCROLL
+     ------------------------------------------------------- */
+  function initHeaderScroll() {
+    var header = document.querySelector('.header');
+    if (!header) return;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
+    var lastScroll = 0;
+    header.style.transition = 'transform 0.3s ease';
+
+    window.addEventListener('scroll', function () {
+      var currentScroll = window.pageYOffset;
+
+      if (currentScroll > lastScroll && currentScroll > 100) {
         header.style.transform = 'translateY(-100%)';
-    } else {
+      } else {
         header.style.transform = 'translateY(0)';
-    }
-    
-    lastScroll = currentScroll;
-});
+      }
 
-header.style.transition = 'transform 0.3s ease';
+      lastScroll = currentScroll;
+    }, { passive: true });
+  }
 
-// ===== LANGUAGE SWITCHER =====
-const translations = {
-    "nav-about": {
-        ru: "О себе",
-        en: "About"
-    },
-    "nav-experience": {
-        ru: "Опыт",
-        en: "Experience"
-    },
-    "nav-case-studies": {
-        ru: "Case Studies",
-        en: "Case Studies"
-    },
-    "nav-projects": {
-        ru: "Проекты",
-        en: "Projects"
-    },
-    "nav-contact": {
-        ru: "Контакты",
-        en: "Contact"
-    },
-    "hero-title": {
-        ru: "Привет, я <span class=\"highlight\">Николай Богатырев</span>",
-        en: "Hi, I'm <span class=\"highlight\">Nikolay Bogatyrev</span>"
-    },
-    "hero-subtitle": {
-        ru: "Product Manager/Ai entrepreneur",
-        en: "Product Manager/AI entrepreneur"
-    },
-    "stat-experience": {
-        ru: "лет опыта",
-        en: "years experience"
-    },
-    "stat-team": {
-        ru: "макс. размер команды",
-        en: "max team size"
-    },
-    "stat-efficiency": {
-        ru: "рост эффективности",
-        en: "efficiency growth"
-    },
-    "btn-download": {
-        ru: "Скачать CV (PDF)",
-        en: "Download CV (PDF)"
-    },
-    "btn-contact": {
-        ru: "Связаться",
-        en: "Contact me"
-    },
-    "about-title": {
-        ru: "О себе",
-        en: "About Me"
-    },
-    "experience-title": {
-        ru: "Опыт работы",
-        en: "Work Experience"
-    },
-    "case-studies-title": {
-        ru: "📚 Кейсы",
-        en: "📚 Case Studies"
-    },
-    "case-studies-subtitle": {
-        ru: "Реальные примеры влияния продуктов и решения проблем",
-        en: "Real examples of product impact and problem-solving"
-    },
-    "projects-title": {
-        ru: "Pet Projects",
-        en: "Pet Projects"
-    },
-    "contact-title": {
-        ru: "Контакты",
-        en: "Contact"
-    },
-    "contact-description": {
-        ru: "Свяжитесь со мной через социальные сети или отправьте email",
-        en: "Contact me through social networks or send an email"
-    },
-    "about-intro-1": {
-        ru: "Product Manager с 6+ годами опыта в Gambling, Fintech и SaaS.",
-        en: "Product Manager with 6+ years of experience in Gambling, Fintech, and SaaS."
-    },
-    "about-intro-2": {
-        ru: "Строю продуктовую стратегию, управляю кроссфункциональными командами до 17 человек, запускаю продукты с нуля и оптимизирую существующие.",
-        en: "Building product strategy, managing cross-functional teams up to 17 people, launching products from scratch and optimizing existing ones."
-    },
-    "about-results-title": {
-        ru: "Результаты",
-        en: "Results"
-    },
-    "about-result-1": {
-        ru: "60-90% эффективность команд",
-        en: "60-90% team efficiency"
-    },
-    "about-result-2": {
-        ru: "80-90% доставка в срок",
-        en: "80-90% on-time delivery"
-    },
-    "about-result-3": {
-        ru: "Сокращение time-to-market на 70%+",
-        en: "Time-to-market reduction by 70%+"
-    },
-    "about-tools-title": {
-        ru: "Инструменты",
-        en: "Tools"
-    },
-    "about-tool-1": {
-        ru: "Roadmap Development, Agile/Scrum",
-        en: "Roadmap Development, Agile/Scrum"
-    },
-    "about-tool-2": {
-        ru: "SQL/Redshift/Looker/DBT",
-        en: "SQL/Redshift/Looker/DBT"
-    },
-    "about-tool-3": {
-        ru: "Payment Systems, Market Research",
-        en: "Payment Systems, Market Research"
-    },
-    "btn-expand": {
-        ru: "Подробнее",
-        en: "Details"
-    },
-    "btn-collapse": {
-        ru: "Свернуть",
-        en: "Collapse"
-    },
-    "case-challenge": {
-        ru: "Challenge",
-        en: "Challenge"
-    },
-    "case-solution": {
-        ru: "Solution",
-        en: "Solution"
-    },
-    "case-result": {
-        ru: "Result",
-        en: "Result"
-    },
-    "case-1-title": {
-        ru: "От нуля до PM: Первые шаги в карьере",
-        en: "From Zero to PM: First Steps in Career"
-    },
-    "case-1-stat-1": {
-        ru: "Хакатонов",
-        en: "Hackathons"
-    },
-    "case-1-stat-2": {
-        ru: "Первая работа",
-        en: "First job"
-    },
-    "case-1-stat-3": {
-        ru: "До первого оффера",
-        en: "To first offer"
-    },
-    "case-1-challenge": {
-        ru: "Прошел обучение по монетизации продукта, но не брали на позицию Product Manager из-за отсутствия практического опыта. Нужно было быстро набрать реальный опыт и доказать способность управлять продуктом.",
-        en: "Completed product monetization training, but wasn't hired for Product Manager position due to lack of practical experience. Needed to quickly gain real experience and prove ability to manage a product."
-    },
-    "case-1-solution-1": {
-        ru: "Участвовал в 5 хакатонах — собирал команды, описывал идею продукта, доводил до результата",
-        en: "Participated in 5 hackathons — assembled teams, described product idea, brought it to fruition"
-    },
-    "case-1-solution-2": {
-        ru: "Быстро анализировал ошибки и извлекал уроки из каждого опыта",
-        en: "Quickly analyzed mistakes and learned lessons from each experience"
-    },
-    "case-1-solution-3": {
-        ru: "Фокусировался на практических навыках: управление командой, описание требований, приоритизация",
-        en: "Focused on practical skills: team management, requirements description, prioritization"
-    },
-    "case-1-result": {
-        ru: "Несмотря на отсутствие побед, быстро собрал практический опыт и получил первую работу в качестве менеджера проектов. Опыт хакатонов стал фундаментом для дальнейшего роста в PM.",
-        en: "Despite no wins, quickly gained practical experience and got the first job as a project manager. Hackathon experience became the foundation for further growth in PM."
-    },
-    "case-2-title": {
-        ru: "Доставка проекта в новогодние праздники",
-        en: "Project Delivery During New Year Holidays"
-    },
-    "case-2-stat-1": {
-        ru: "Разработчика",
-        en: "Developers"
-    },
-    "case-2-stat-2": {
-        ru: "Идеальная доставка",
-        en: "Perfect delivery"
-    },
-    "case-2-stat-3": {
-        ru: "Новый контракт",
-        en: "New contract"
-    },
-    "case-2-challenge": {
-        ru: "Первое рабочее место — крупный проект на сложную верстку. Сроки совпали с новогодними праздниками, когда большинство команды в отпуске. Минимальный состав команды — всего 2 разработчика.",
-        en: "First job — a large project with complex layout. Deadlines coincided with New Year holidays when most of the team was on vacation. Minimal team composition — only 2 developers."
-    },
-    "case-2-solution-1": {
-        ru: "Оптимизировал процесс работы с учетом ограниченных ресурсов",
-        en: "Optimized work process considering limited resources"
-    },
-    "case-2-solution-2": {
-        ru: "Организовал эффективную коммуникацию между разработчиками",
-        en: "Organized effective communication between developers"
-    },
-    "case-2-solution-3": {
-        ru: "Приоритизировал задачи для максимальной эффективности",
-        en: "Prioritized tasks for maximum efficiency"
-    },
-    "case-2-solution-4": {
-        ru: "Обеспечил качественную доставку проекта в срок",
-        en: "Ensured quality project delivery on time"
-    },
-    "case-2-result": {
-        ru: "Проект успешно доставлен в срок. Клиент вернулся с новым большим контрактом, что подтвердило качество работы и надежность команды.",
-        en: "Project successfully delivered on time. Client returned with a new large contract, confirming the quality of work and team reliability."
-    },
-    "case-3-title": {
-        ru: "Рост эффективности команды в криптопроекте",
-        en: "Team Efficiency Growth in Crypto Project"
-    },
-    "case-3-stat-1": {
-        ru: "Эффективность",
-        en: "Efficiency"
-    },
-    "case-3-stat-2": {
-        ru: "Доски",
-        en: "Boards"
-    },
-    "case-3-stat-3": {
-        ru: "Время на уточнения",
-        en: "Clarification time"
-    },
-    "case-3-challenge": {
-        ru: "В криптопроекте не было четкости в процессах. Продукт заводил свои задачи на общую доску разработки, что создавало путаницу и снижало эффективность команды. Задачи приходили в разработку непродуманными и плохо описанными.",
-        en: "In the crypto project, there was no clarity in processes. Product manager created tasks on a shared development board, which caused confusion and reduced team efficiency. Tasks came into development ill-conceived and poorly described."
-    },
-    "case-3-solution-1": {
-        ru: "Создал отдельную доску для менеджера продукта",
-        en: "Created a separate board for product manager"
-    },
-    "case-3-solution-2": {
-        ru: "На доске разработки оставил только задачи, которые точно надо делать",
-        en: "Left only tasks that definitely needed to be done on the development board"
-    },
-    "case-3-solution-3": {
-        ru: "Внедрил процесс предварительной проработки задач перед передачей в разработку",
-        en: "Implemented a process for preliminary task elaboration before handing over to development"
-    },
-    "case-3-solution-4": {
-        ru: "Обеспечил четкое описание требований и контекста для каждой задачи",
-        en: "Ensured clear description of requirements and context for each task"
-    },
-    "case-3-result": {
-        ru: "Эффективность команды увеличилась — закрывали до 80% задач. Задачи приходили в разработку продуманными и описанными, что сократило время на уточнения и переделки.",
-        en: "Team efficiency increased — up to 80% of tasks were completed. Tasks came into development well-thought-out and described, reducing time for clarifications and rework."
-    },
-    "case-4-title": {
-        ru: "Фреймворк предсказуемости интеграций",
-        en: "Integration Predictability Framework"
-    },
-    "case-4-stat-1": {
-        ru: "Попадание в срок",
-        en: "On-time delivery"
-    },
-    "case-4-stat-2": {
-        ru: "Стандартный план",
-        en: "Standard plan"
-    },
-    "case-4-stat-3": {
-        ru: "Время планирования",
-        en: "Planning time"
-    },
-    "case-4-challenge": {
-        ru: "Работа с гемблинг платформой. Прогнозирование интеграций было слабым — половина выходила за рамки сроков. Не было единого подхода к планированию, что приводило к непредсказуемым задержкам и переработкам.",
-        en: "Working with a gambling platform. Integration forecasting was weak — half exceeded deadlines. There was no unified approach to planning, leading to unpredictable delays and rework."
-    },
-    "case-4-solution-1": {
-        ru: "Выяснил, что интеграции подчиняются одному шаблону",
-        en: "Found that integrations follow one pattern"
-    },
-    "case-4-solution-2": {
-        ru: "Ввел новый процесс планирования: с новой интеграцией открывали стандартный план в MIRO",
-        en: "Introduced new planning process: with each new integration, opened a standard plan in MIRO"
-    },
-    "case-4-solution-3": {
-        ru: "Фиксировали требования и риски на раннем этапе",
-        en: "Fixed requirements and risks at an early stage"
-    },
-    "case-4-solution-4": {
-        ru: "Формировали список вопросов для технического аккаунт-менеджера клиента заранее",
-        en: "Formed a list of questions for client's technical account manager in advance"
-    },
-    "case-4-result": {
-        ru: "Попадание в срок улучшилось до 80%. Стандартизация процесса позволила предсказывать риски и сроки, сократила время на планирование и улучшила качество интеграций.",
-        en: "On-time delivery improved to 80%. Process standardization allowed predicting risks and deadlines, reduced planning time and improved integration quality."
-    },
-    "case-5-title": {
-        ru: "Система отслеживания обращений клиента",
-        en: "Client Request Tracking System"
-    },
-    "case-5-stat-1": {
-        ru: "Confluence страница",
-        en: "Confluence page"
-    },
-    "case-5-stat-2": {
-        ru: "Поиск тикетов",
-        en: "Ticket search"
-    },
-    "case-5-stat-3": {
-        ru: "Потерянных тикетов",
-        en: "Lost tickets"
-    },
-    "case-5-challenge": {
-        ru: "Работа с support командой с крупным клиентом в Америке (сайт с товарами). Support и Dev команды были разными. Когда клиент жаловался, Support не мог быстро найти тикет или список обращений. Проблема: клиент мог иметь несколько имен для компаний, но ссылка на бекенде одинаковая.",
-        en: "Working with support team for a large client in America (e-commerce site). Support and Dev teams were separate. When client complained, Support couldn't quickly find the ticket or list of requests. Problem: client could have multiple company names, but backend link was the same."
-    },
-    "case-5-solution-1": {
-        ru: "Настроил JIRA — из адреса на бекенде вытаскивать ID",
-        en: "Configured JIRA — extract ID from backend address"
-    },
-    "case-5-solution-2": {
-        ru: "По этому ID настроил фильтр для быстрого поиска всех тикетов клиента",
-        en: "Set up a filter by this ID for quick search of all client tickets"
-    },
-    "case-5-solution-3": {
-        ru: "Сделал Confluence страницу — по ссылке клиента можно посмотреть все тикеты",
-        en: "Created Confluence page — by client link you can view all tickets"
-    },
-    "case-5-solution-4": {
-        ru: "Добавил возможность поставить тикет на разработку и отследить статус",
-        en: "Added ability to assign ticket to development and track status"
-    },
-    "case-5-result": {
-        ru: "Support команда получила возможность быстро находить все обращения клиента, независимо от названия компании. Прозрачность процесса улучшила коммуникацию между Support и Dev командами, сократила время на поиск информации.",
-        en: "Support team gained ability to quickly find all client requests, regardless of company name. Process transparency improved communication between Support and Dev teams, reduced time for information search."
-    },
-    "case-6-title": {
-        ru: "Автоматизация онбординга клиентов",
-        en: "Client Onboarding Automation"
-    },
-    "case-6-stat-1": {
-        ru: "Время онбординга",
-        en: "Onboarding time"
-    },
-    "case-6-stat-2": {
-        ru: "Время разработчика",
-        en: "Developer time"
-    },
-    "case-6-stat-3": {
-        ru: "Сокращение ошибок",
-        en: "Error reduction"
-    },
-    "case-6-challenge": {
-        ru: "При добавлении нового клиента возникали проблемы с данными. Разные POS — разные варианты представления информации о товарах. Support тратил время на перевод данных вручную, допускал ошибки. Разработчику приходилось тратить время на уточнения. Добавление клиента растягивалось до 4 дней.",
-        en: "When adding a new client, data problems arose. Different POS systems — different ways of representing product information. Support spent time manually converting data, made errors. Developer had to spend time on clarifications. Client addition stretched to 4 days."
-    },
-    "case-6-solution-1": {
-        ru: "Создал на основе Python систему переработки данных в нужный формат",
-        en: "Created Python-based system for converting data to required format"
-    },
-    "case-6-solution-2": {
-        ru: "Автоматизировал процесс конвертации данных из разных форматов POS",
-        en: "Automated data conversion process from different POS formats"
-    },
-    "case-6-solution-3": {
-        ru: "Добавил возможность для Support самостоятельно загружать данные через систему",
-        en: "Added ability for Support to independently upload data through the system"
-    },
-    "case-6-solution-4": {
-        ru: "Внедрил валидацию данных для предотвращения ошибок",
-        en: "Implemented data validation to prevent errors"
-    },
-    "case-6-result": {
-        ru: "Сократил ручную работу с 2-4 дней до 1-2 часов. Сократил время работы разработчика с 8 часов до 30 минут при ошибках с дублированием. Система автоматически обрабатывает данные и предотвращает большинство ошибок.",
-        en: "Reduced manual work from 2-4 days to 1-2 hours. Reduced developer time from 8 hours to 30 minutes for duplication errors. System automatically processes data and prevents most errors."
-    },
-    "case-7-title": {
-        ru: "AI-ассистент для аналитики данных",
-        en: "AI Assistant for Data Analytics"
-    },
-    "case-7-stat-1": {
-        ru: "Junior+ разработчик",
-        en: "Junior+ developer"
-    },
-    "case-7-stat-2": {
-        ru: "Senior времени",
-        en: "Senior time"
-    },
-    "case-7-stat-3": {
-        ru: "Нагрузка на лида",
-        en: "Lead workload"
-    },
-    "case-7-challenge": {
-        ru: "У клиентов была система работы с данными на основе Looker. Когда ушел аналитик данных, самостоятельно научился настраивать отчеты. У CEO возникла идея использовать AI помощника для Looker. Оказалось, что готовое решение не подходит для архитектуры. Нужно было найти open-source структуру и развернуть сервис без нагрузки на лида frontend разработки.",
-        en: "Clients had a data system based on Looker. When data analyst left, learned to configure reports independently. CEO had an idea to use AI assistant for Looker. Turned out that ready solution didn't fit the architecture. Needed to find open-source structure and deploy service without loading frontend lead."
-    },
-    "case-7-solution-1": {
-        ru: "Нашли готовую open-source структуру, подходящую для архитектуры",
-        en: "Found ready open-source structure suitable for architecture"
-    },
-    "case-7-solution-2": {
-        ru: "Убедил CEO, что не нужно ставить лида frontend разработки (у него нагруженная работа)",
-        en: "Convinced CEO that frontend lead wasn't needed (he had heavy workload)"
-    },
-    "case-7-solution-3": {
-        ru: "Поставили разработчика уровня Junior+",
-        en: "Assigned Junior+ level developer"
-    },
-    "case-7-solution-4": {
-        ru: "Организовал процесс так, чтобы frontend разработчик самостоятельно развернул сервис",
-        en: "Organized process so frontend developer independently deployed the service"
-    },
-    "case-7-result": {
-        ru: "Frontend разработчик самостоятельно развернул сервис. Лид frontend не был загружен дополнительной работой. AI-ассистент успешно интегрирован в систему аналитики, улучшив работу с данными для клиентов.",
-        en: "Frontend developer independently deployed the service. Frontend lead wasn't loaded with additional work. AI assistant successfully integrated into analytics system, improving data work for clients."
-    },
-    "project-1-desc": {
-        ru: "Современный адаптивный сайт-портфолио для размещения на GitHub Pages с поддержкой видео-визитки, опыта работы, статей и проектов.",
-        en: "Modern responsive portfolio website for GitHub Pages with video introduction, work experience, articles and projects support."
-    },
-    "project-2-desc": {
-        ru: "Статическая версия шаблона карточек Zettelkasten для публикации на GitHub Pages. Шаблон для печати карточек Zettelkasten - системы организации знаний с использованием карточек-заметок. Оптимизирован для печати на формате A4.",
-        en: "Static version of Zettelkasten cards template for GitHub Pages publication. Template for printing Zettelkasten cards - knowledge organization system using note cards. Optimized for A4 format printing."
-    },
-    "btn-view-github": {
-        ru: "Смотреть на GitHub",
-        en: "View on GitHub"
-    },
-    "btn-demo": {
-        ru: "Демо",
-        en: "Demo"
-    },
-    "btn-all-projects": {
-        ru: "Все проекты на GitHub",
-        en: "All projects on GitHub"
-    },
-    "footer-name": {
-        ru: "Николай Богатырев",
-        en: "Nikolay Bogatyrev"
-    },
-    "footer-rights": {
-        ru: "Все права защищены",
-        en: "All rights reserved"
-    }
-};
-
-// Language Switcher Class
-class LanguageSwitcher {
+  /* -------------------------------------------------------
+     7. LANGUAGE SWITCHER
+     ------------------------------------------------------- */
+  class LanguageSwitcher {
     constructor() {
-        this.currentLang = this.getInitialLanguage();
-        this.init();
+      this.currentLang = this._detectLanguage();
+      this._bindButtons();
+      this._bindKeyboardShortcut();
+      this.setLanguage(this.currentLang, false);
     }
 
-    getInitialLanguage() {
-        // Check localStorage first
-        const savedLang = localStorage.getItem('portfolio-lang');
-        if (savedLang && (savedLang === 'ru' || savedLang === 'en')) {
-            return savedLang;
+    /* Detect: localStorage → browser language → default "en" */
+    _detectLanguage() {
+      var saved = localStorage.getItem('portfolio-lang');
+      if (saved === 'ru' || saved === 'en') return saved;
+
+      var browser = navigator.language || navigator.userLanguage || '';
+      return browser.startsWith('ru') ? 'ru' : 'en';
+    }
+
+    /* Bind click handlers to .lang-btn elements */
+    _bindButtons() {
+      var self = this;
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var lang = btn.getAttribute('data-lang');
+          if (lang) self.setLanguage(lang, true);
+        });
+      });
+    }
+
+    /* Alt+L toggles language */
+    _bindKeyboardShortcut() {
+      var self = this;
+      document.addEventListener('keydown', function (e) {
+        if (e.altKey && e.key.toLowerCase() === 'l') {
+          e.preventDefault();
+          self.setLanguage(self.currentLang === 'ru' ? 'en' : 'ru', true);
         }
+      });
+    }
 
-        // Auto-detect browser language
-        const browserLang = navigator.language || navigator.userLanguage;
-        if (browserLang.startsWith('ru')) {
-            return 'ru';
+    /* Apply language to the page */
+    setLanguage(lang, animate) {
+      this.currentLang = lang;
+      localStorage.setItem('portfolio-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+
+      // Update active button state
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
         }
-        return 'en'; // Default to English
-    }
+      });
 
-    init() {
-        // Wait a bit to ensure DOM is fully ready
-        setTimeout(() => {
-            // Add event listeners to language buttons FIRST
-            const langButtons = document.querySelectorAll('.lang-btn');
-            console.log('Initializing language switcher. Found buttons:', langButtons.length);
-            
-            if (langButtons.length === 0) {
-                console.error('Language switcher buttons not found!');
-                return;
+      // Translate all data-lang-key elements
+      document.querySelectorAll('[data-lang-key]').forEach(function (el) {
+        var key = el.getAttribute('data-lang-key');
+        if (!translations[key] || !translations[key][lang]) return;
+
+        var newContent = translations[key][lang];
+
+        if (animate) {
+          el.style.transition = 'opacity 0.15s ease';
+          el.style.opacity = '0';
+
+          setTimeout(function () {
+            el.innerHTML = newContent;
+            el.style.opacity = '1';
+
+            // Re-create Lucide icons inside the updated element
+            if (typeof lucide !== 'undefined') {
+              lucide.createIcons({ nodes: [el] });
             }
-
-            langButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const lang = btn.getAttribute('data-lang');
-                    console.log('Language button clicked:', lang);
-                    if (lang) {
-                        this.setLanguage(lang, true);
-                    }
-                });
-            });
-
-            // Set initial language AFTER event listeners are attached
-            this.setLanguage(this.currentLang, false);
-        }, 100);
-
-        // Keyboard shortcut: Alt+L
-        document.addEventListener('keydown', (e) => {
-            if (e.altKey && e.key.toLowerCase() === 'l') {
-                e.preventDefault();
-                const newLang = this.currentLang === 'ru' ? 'en' : 'ru';
-                this.setLanguage(newLang, true);
-            }
-        });
-    }
-
-    setLanguage(lang, animate = true) {
-        console.log('Setting language to:', lang);
-        this.currentLang = lang;
-        localStorage.setItem('portfolio-lang', lang);
-
-        // Update HTML lang attribute
-        document.documentElement.setAttribute('lang', lang);
-
-        // Update active button
-        const langButtons = document.querySelectorAll('.lang-btn');
-        console.log('Found language buttons:', langButtons.length);
-        langButtons.forEach(btn => {
-            const btnLang = btn.getAttribute('data-lang');
-            if (btnLang === lang) {
-                btn.classList.add('active');
-                console.log('Activated button:', btnLang);
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-
-        // Update all translatable elements
-        document.querySelectorAll('[data-lang-key]').forEach(element => {
-            const key = element.getAttribute('data-lang-key');
-            if (translations[key] && translations[key][lang]) {
-                if (animate) {
-                    // Fade animation
-                    element.style.transition = 'opacity 0.3s ease';
-                    element.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        element.innerHTML = translations[key][lang];
-                        element.style.opacity = '1';
-                    }, 150);
-                } else {
-                    element.innerHTML = translations[key][lang];
-                }
-            }
-        });
-
-        // Handle content with data-lang attribute (for case studies)
-        // Exclude language switcher buttons
-        document.querySelectorAll('[data-lang]:not(.lang-btn)').forEach(element => {
-            if (element.getAttribute('data-lang') === lang) {
-                if (animate) {
-                    element.style.transition = 'opacity 0.3s ease';
-                    element.style.opacity = '0';
-                    setTimeout(() => {
-                        element.style.display = '';
-                        element.style.opacity = '1';
-                    }, 150);
-                } else {
-                    element.style.display = '';
-                    element.style.opacity = '1';
-                }
-            } else {
-                if (animate) {
-                    element.style.opacity = '0';
-                    setTimeout(() => {
-                        element.style.display = 'none';
-                    }, 150);
-                } else {
-                    element.style.display = 'none';
-                }
-            }
-        });
-    }
-}
-
-// Initialize language switcher when DOM is ready
-const initLanguageSwitcher = () => {
-    const langSwitcher = new LanguageSwitcher();
-    console.log('Language switcher initialized. Current language:', langSwitcher.currentLang);
-    return langSwitcher;
-};
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
-} else {
-    initLanguageSwitcher();
-}
-
-// Cases Carousel and Expand Functionality
-const initCasesCarousel = () => {
-    const carousel = document.getElementById('casesCarousel');
-    const prevBtn = document.querySelector('.carousel-btn-prev');
-    const nextBtn = document.querySelector('.carousel-btn-next');
-    const expandButtons = document.querySelectorAll('.case-expand-btn');
-    
-    if (!carousel) return;
-    
-    // Carousel navigation
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: -940, behavior: 'smooth' });
-        });
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: 940, behavior: 'smooth' });
-        });
-    }
-    
-    // Expand/Collapse functionality
-    expandButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const caseId = btn.getAttribute('data-case');
-            const content = document.getElementById(`case-${caseId}`);
-            const isActive = btn.classList.contains('active');
-            
-            if (isActive) {
-                btn.classList.remove('active');
-                content.classList.remove('active');
-                const expandText = btn.querySelector('.expand-text');
-                if (expandText) {
-                    expandText.setAttribute('data-lang-key', 'btn-expand');
-                    // Update text immediately using current language
-                    const currentLang = document.documentElement.getAttribute('lang') || 'ru';
-                    if (translations['btn-expand']) {
-                        expandText.textContent = translations['btn-expand'][currentLang];
-                    }
-                }
-            } else {
-                // Close all other expanded cases
-                expandButtons.forEach(otherBtn => {
-                    if (otherBtn !== btn) {
-                        otherBtn.classList.remove('active');
-                        const otherCaseId = otherBtn.getAttribute('data-case');
-                        const otherContent = document.getElementById(`case-${otherCaseId}`);
-                        if (otherContent) {
-                            otherContent.classList.remove('active');
-                            const otherExpandText = otherBtn.querySelector('.expand-text');
-                            if (otherExpandText) {
-                                otherExpandText.setAttribute('data-lang-key', 'btn-expand');
-                                const currentLang = document.documentElement.getAttribute('lang') || 'ru';
-                                if (translations['btn-expand']) {
-                                    otherExpandText.textContent = translations['btn-expand'][currentLang];
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                btn.classList.add('active');
-                content.classList.add('active');
-                const expandText = btn.querySelector('.expand-text');
-                if (expandText) {
-                    expandText.setAttribute('data-lang-key', 'btn-collapse');
-                    // Update text immediately using current language
-                    const currentLang = document.documentElement.getAttribute('lang') || 'ru';
-                    if (translations['btn-collapse']) {
-                        expandText.textContent = translations['btn-collapse'][currentLang];
-                    }
-                }
-                
-                // Scroll to expanded case
-                setTimeout(() => {
-                    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            }
-        });
-    });
-    
-    // Hide/show navigation buttons based on scroll position
-    const updateNavButtons = () => {
-        if (prevBtn && nextBtn) {
-            const isAtStart = carousel.scrollLeft <= 10;
-            const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10;
-            
-            prevBtn.style.opacity = isAtStart ? '0.3' : '1';
-            prevBtn.style.pointerEvents = isAtStart ? 'none' : 'auto';
-            
-            nextBtn.style.opacity = isAtEnd ? '0.3' : '1';
-            nextBtn.style.pointerEvents = isAtEnd ? 'none' : 'auto';
+          }, 150);
+        } else {
+          el.innerHTML = newContent;
         }
-    };
-    
-    carousel.addEventListener('scroll', updateNavButtons);
-    updateNavButtons();
-};
+      });
 
-// Initialize cases carousel
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCasesCarousel);
-} else {
-    initCasesCarousel();
-}
+      // Switch CV download links based on language
+      var cvFile = lang === 'ru' ? 'docs/Nikolai_Bogatyrev_CV_RU.pdf' : 'docs/Nikolai_Bogatyrev_CV_EN.pdf';
+      document.querySelectorAll('a[download][href*="CV_"]').forEach(function (a) {
+        a.setAttribute('href', cvFile);
+      });
 
-console.log('Portfolio site loaded successfully! 🚀');
+      // After all translations applied (with or without animation),
+      // re-initialize Lucide icons globally to catch any that were
+      // outside data-lang-key elements but still need rendering.
+      if (animate) {
+        setTimeout(function () {
+          if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+          }
+        }, 200);
+      }
+    }
+  }
+
+  /* -------------------------------------------------------
+     8. BOOT
+     ------------------------------------------------------- */
+  function boot() {
+    initSmoothScrolling();
+    initActiveNav();
+    initScrollAnimations();
+    initMobileMenu();
+    initHeaderScroll();
+
+    // Language switcher (must run after DOM is ready)
+    new LanguageSwitcher();
+
+    // Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();

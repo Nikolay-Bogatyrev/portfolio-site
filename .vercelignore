@@ -1,0 +1,11 @@
+docs/resume
+docs/resume_master_en.md
+docs/resume_master_ru.md
+docs/cv_en.html
+docs/cv_ru.html
+docs/TUpHJ.png
+docs/Vibeprojects.md
+docs/Workinglinks
+*.md
+!README.md
+.git
